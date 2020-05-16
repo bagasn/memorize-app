@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Memorize</string>
+    <string name="setting">Setting</string>
+    <string name="title_main_menu">Main Menu</string>
+</resources>
