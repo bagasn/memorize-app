@@ -18,6 +18,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".feature.ChunkingMenu"
+            android:label="@string/title_chunking_menu" />
+
     </application>
 
 </manifest>

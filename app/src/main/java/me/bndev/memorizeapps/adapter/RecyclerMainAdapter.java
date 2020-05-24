@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import me.bndev.memorizeapps.R;
@@ -18,7 +17,7 @@ public class RecyclerMainAdapter extends RecyclerView.Adapter<RecyclerMainAdapte
 
     private Context context;
     private List<String> menuList;
-    private OnMenuClickListener mListener;
+    private IRecycler.OnSelectItemListener mListener;
 
     public RecyclerMainAdapter(Context context, List<String> objects) {
         this.context = context;
@@ -40,7 +39,7 @@ public class RecyclerMainAdapter extends RecyclerView.Adapter<RecyclerMainAdapte
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onMenuClicked(position);
+                    mListener.onSelectedItem(position);
                 }
             }
         });
@@ -51,17 +50,15 @@ public class RecyclerMainAdapter extends RecyclerView.Adapter<RecyclerMainAdapte
         return menuList.size();
     }
 
-    public void setOnMenuClickListener(OnMenuClickListener listener) {
+    public void setOnMenuClickListener(IRecycler.OnSelectItemListener listener) {
         mListener = listener;
     }
 
     static class MenuHolder extends RecyclerView.ViewHolder {
-
         private TextView textItem;
 
         MenuHolder(@NonNull View itemView) {
             super(itemView);
-
             textItem = itemView.findViewById(R.id.text_item);
         }
 
@@ -70,7 +67,4 @@ public class RecyclerMainAdapter extends RecyclerView.Adapter<RecyclerMainAdapte
         }
     }
 
-    public interface OnMenuClickListener {
-        void onMenuClicked(int position);
-    }
 }

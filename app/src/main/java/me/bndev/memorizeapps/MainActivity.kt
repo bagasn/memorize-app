@@ -1,11 +1,13 @@
 package me.bndev.memorizeapps
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import me.bndev.memorizeapps.adapter.RecyclerMainAdapter
+import me.bndev.memorizeapps.feature.ChunkingMenu
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = RecyclerMainAdapter(this, menuList)
         adapter.setOnMenuClickListener { pos ->
-            // TODO: when clicked menu
+            onItemSelected(pos)
         }
         recycler_menu.adapter = adapter
     }
@@ -37,6 +39,17 @@ class MainActivity : AppCompatActivity() {
             android.R.id.home -> onBackPressed()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun onItemSelected(pos: Int) {
+        when (pos) {
+            // Chunking
+            0 -> moveTo(Intent(this, ChunkingMenu::class.java))
+        }
+    }
+
+    fun moveTo(intent: Intent) {
+        startActivity(intent)
     }
 
 }
