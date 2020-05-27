@@ -7,19 +7,21 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_chunking_menu.*
 import me.bndev.memorizeapps.R
 import me.bndev.memorizeapps.adapter.RecyclerChunkingMenuAdapter
+import me.bndev.memorizeapps.app.IActivity
+import me.bndev.memorizeapps.model.ChunkingEnum
 import me.bndev.memorizeapps.model.ChunkingItem
 
-class ChunkingMenu : AppCompatActivity() {
+class ChunkingMenu : IActivity() {
 
     private var objects = mutableListOf(
         ChunkingItem(
-            1,
+            ChunkingEnum.WORD,
             "Random Word",
             "Generate random word",
             R.color.card_blue_background
         ),
         ChunkingItem(
-            2,
+            ChunkingEnum.NUMBER,
             "Random Number",
             "Generate random number",
             R.color.card_green_background
@@ -46,8 +48,10 @@ class ChunkingMenu : AppCompatActivity() {
         }
     }
 
-    fun moveTo(id: Int) {
+    fun moveTo(id: ChunkingEnum) {
         val intent = Intent(this, ChunkingPractice::class.java)
+        intent.putExtra("chunking-id", id);
+        startActivity(intent)
     }
 
 }

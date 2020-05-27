@@ -22,6 +22,10 @@
             android:name=".feature.ChunkingMenu"
             android:label="@string/title_chunking_menu" />
 
+        <activity
+            android:name=".feature.ChunkingPractice"
+            android:label="@string/title_chunking_practice" />
+
     </application>
 
 </manifest>

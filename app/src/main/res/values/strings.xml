@@ -3,4 +3,5 @@
     <string name="setting">Setting</string>
     <string name="title_main_menu">Main Menu</string>
     <string name="title_chunking_menu">Chunking Menu</string>
+    <string name="title_chunking_practice">Chunking Practice</string>
 </resources>

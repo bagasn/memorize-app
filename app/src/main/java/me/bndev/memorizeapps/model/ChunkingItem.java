@@ -3,7 +3,7 @@ package me.bndev.memorizeapps.model;
 import androidx.annotation.ColorRes;
 
 public class ChunkingItem {
-    private int id;
+    private ChunkingEnum id;
     private String title;
     private String description;
     private int color;
@@ -11,18 +11,18 @@ public class ChunkingItem {
     public ChunkingItem() {
     }
 
-    public ChunkingItem(int id, String title, String description, @ColorRes int color) {
+    public ChunkingItem(ChunkingEnum id, String title, String description, @ColorRes int color) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.color = color;
     }
 
-    public int getId() {
+    public ChunkingEnum getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(ChunkingEnum id) {
         this.id = id;
     }
 

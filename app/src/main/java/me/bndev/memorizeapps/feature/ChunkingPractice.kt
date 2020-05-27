@@ -1,0 +1,54 @@
+package me.bndev.memorizeapps.feature
+
+import android.os.Bundle
+import android.util.Log
+import kotlinx.android.synthetic.main.activity_chunking_practice.*
+import me.bndev.memorizeapps.R
+import me.bndev.memorizeapps.adapter.SpinnerChunkingLevelAdapter
+import me.bndev.memorizeapps.app.IActivity
+import me.bndev.memorizeapps.fragment.ChunkingRandomNumber
+import me.bndev.memorizeapps.model.ChunkingEnum
+import me.bndev.memorizeapps.model.LevelMod
+
+class ChunkingPractice : IActivity() {
+
+    private val levelList = mutableListOf<LevelMod>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_chunking_practice)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        setLevelUntil(15)
+        spinner_level.adapter = SpinnerChunkingLevelAdapter(this, levelList)
+
+        button_start.setOnClickListener {
+            actionStartButton()
+        }
+    }
+
+    fun actionStartButton() {
+        val chunkinType = intent.getSerializableExtra("chunking-id") as? ChunkingEnum
+        Log.i("C", chunkinType.toString())
+        if (chunkinType == ChunkingEnum.NUMBER) {
+            val level = spinner_level.selectedItem as? LevelMod
+
+            val tr = supportFragmentManager.beginTransaction()
+            tr.add(R.id.frame_content, ChunkingRandomNumber(level!!))
+            tr.commit()
+        }
+    }
+
+    fun setLevelUntil(until: Int) {
+        for (i in 1..until) {
+            val level = LevelMod()
+            level.level = i
+            level.title = "Level $i"
+            level.numberOfObject = 5 + (i * 5)
+
+            levelList.add(level)
+        }
+    }
+
+}
