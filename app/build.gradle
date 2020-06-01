@@ -2,6 +2,25 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+def versionFile = rootProject.file("version.properties")
+def mVersionCode, mVersionApp, mVersionRelease, mVersionDebug
+def mVersionName
+def mDatabaseVersion = 1
+
+if (versionFile.canRead()) {
+    def versionProperties = new Properties()
+    versionProperties.load(new FileInputStream(versionFile))
+
+    mVersionCode = versionProperties['VERSION_CODE']
+    mVersionApp = versionProperties['APP_VERSION']
+    mVersionRelease = versionProperties['RELEASE_VERSION']
+    mVersionDebug = versionProperties['DEBUG_VERSION']
+
+    mVersionName = mVersionApp + "." + mVersionRelease + "." + mVersionDebug
+} else {
+    throw new GradleException("Couldn't read version.properties")
+}
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -10,8 +29,8 @@ android {
         applicationId "me.bndev.memorizeapps"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 1
-        versionName "0.1.1"
+        versionCode mVersionCode.toInteger()
+        versionName mVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -23,6 +42,53 @@ android {
         }
     }
 
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            if (variant.buildType.name == "release") {
+                outputFileName = "Memorize App v${variant.versionName} vdb-$mDatabaseVersion -${variant.name}"
+            }
+        }
+    }
+}
+
+ext.increaseVersionRelease = {
+    if (versionFile.canRead()) {
+        def versionProperties = new Properties()
+        versionProperties.load(new FileInputStream(versionFile))
+
+        def versionCode = versionProperties["VERSION_CODE"].toInteger() + 1
+        def releaseVersion = versionProperties["RELEASE_VERSION"].toInteger() + 1
+
+        versionProperties["VERSION_CODE"] = versionCode.toString()
+        versionProperties["RELEASE_VERSION"] = releaseVersion.toString()
+        versionProperties["DEBUG_VERSION"] = "0"
+
+        versionProperties.store(versionFile.newWriter(), null)
+    } else {
+        throw new GradleException("Error while increase version release")
+    }
+}
+
+ext.increaseVersionDebug = {
+    if (versionFile.canRead()) {
+        def versionProperties = new Properties()
+        versionProperties.load(new FileInputStream(versionFile))
+
+        def debugVersion = versionProperties["DEBUG_VERSION"].toInteger() + 1
+        versionProperties["DEBUG_VERSION"] = debugVersion.toString()
+
+        versionProperties.store(versionFile.newWriter(), null)
+    } else {
+        throw new GradleException("Error while increase version debug")
+    }
+}
+
+gradle.taskGraph.whenReady {taskGraph ->
+    if (taskGraph.hasTask(assembleDebug)) {
+        increaseVersionDebug()
+    } else if (taskGraph.hasTask(assembleRelease)) {
+        increaseVersionRelease()
+    }
 }
 
 dependencies {
