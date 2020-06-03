@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_chunking_menu.*
 import me.bndev.memorizeapps.R
+import me.bndev.memorizeapps.adapter.IRecycler
 import me.bndev.memorizeapps.adapter.RecyclerChunkingMenuAdapter
 import me.bndev.memorizeapps.app.IActivity
 import me.bndev.memorizeapps.model.ChunkingEnum
@@ -35,9 +36,9 @@ class ChunkingMenu : IActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val adapter = RecyclerChunkingMenuAdapter(this, objects)
-        adapter.setOnSelectedItemListener { position ->
-            onSelectedItem(position)
-        }
+        adapter.setOnSelectedItemListener (IRecycler.OnSelectItemListener { pos: Int ->
+            onSelectedItem(pos)
+        })
         recycler_menu.adapter = adapter;
     }
 
@@ -48,7 +49,7 @@ class ChunkingMenu : IActivity() {
         }
     }
 
-    fun moveTo(id: ChunkingEnum) {
+    fun moveTo(id: ChunkingEnum?) {
         val intent = Intent(this, ChunkingPractice::class.java)
         intent.putExtra("chunking-id", id);
         startActivity(intent)

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
+import me.bndev.memorizeapps.adapter.IRecycler
 import me.bndev.memorizeapps.adapter.RecyclerMainAdapter
 import me.bndev.memorizeapps.feature.ChunkingMenu
 
@@ -23,9 +24,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = getString(R.string.title_main_menu)
 
         val adapter = RecyclerMainAdapter(this, menuList)
-        adapter.setOnMenuClickListener { pos ->
+        adapter.setOnMenuClickListener(IRecycler.OnSelectItemListener { pos: Int ->
             onItemSelected(pos)
-        }
+        })
         recycler_menu.adapter = adapter
     }
 
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> onBackPressed()
+//            R.id.action_setting -> Crashlyt
         }
         return super.onOptionsItemSelected(item)
     }

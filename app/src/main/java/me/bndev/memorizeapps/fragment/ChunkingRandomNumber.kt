@@ -26,10 +26,10 @@ class ChunkingRandomNumber(var level: LevelMod) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val layoutManager = GridLayoutManager(context, calculateColumnNumber(16f))
+        val layoutManager = GridLayoutManager(context!!, calculateColumnNumber(16f))
         recycler_chunking.layoutManager = layoutManager
 
-        val adapter = RecyclerChunkingNumberAdapter(context, generateRandomNumber(level))
+        val adapter = RecyclerChunkingNumberAdapter(context!!, generateRandomNumber(level))
         recycler_chunking.adapter = adapter
     }
 

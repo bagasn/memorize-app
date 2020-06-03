@@ -1,7 +1,10 @@
 package me.bndev.memorizeapps.app.config;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+
+import me.bndev.memorizeapps.app.database.SQLiteHelper;
 
 public class DBConfig {
 
