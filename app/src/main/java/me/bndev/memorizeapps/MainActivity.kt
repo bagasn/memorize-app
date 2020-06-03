@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import me.bndev.memorizeapps.adapter.IRecycler
 import me.bndev.memorizeapps.adapter.RecyclerMainAdapter
 import me.bndev.memorizeapps.feature.ChunkingMenu
+import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> onBackPressed()
-//            R.id.action_setting -> Crashlyt
+            R.id.action_setting -> throw RuntimeException("Test Crash")
         }
         return super.onOptionsItemSelected(item)
     }

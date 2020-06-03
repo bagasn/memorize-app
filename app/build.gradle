@@ -25,6 +25,14 @@ if (versionFile.canRead()) {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile rootProject.file("bagas_dev_apps.jks")
+            storePassword 'myAppsKeystore0720'
+            keyAlias = 'memorizeAppsRelease'
+            keyPassword 'releaseApp0720'
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
@@ -40,8 +48,10 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
         }
     }
 

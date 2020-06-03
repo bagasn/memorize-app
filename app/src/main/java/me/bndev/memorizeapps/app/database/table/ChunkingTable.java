@@ -4,5 +4,6 @@ public class ChunkingTable {
 
     public static final String colID = "_id";
     public static final String colLevel = "level";
+    public static final String colNumberOfObject = "number_of_object";
 
 }
