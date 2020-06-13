@@ -32,14 +32,19 @@ class SpinnerChunkingLevelAdapter(context: Context, objects: List<LevelMod?>) :
         var view = convertView
         if (view == null) {
             view = LayoutInflater.from(context)
-                .inflate(R.layout.spinner_item_view, parent, false)
+                .inflate(R.layout.spinner_item_descriptions, parent, false)
         }
         val textContent = view!!.findViewById<TextView>(R.id.text_content)
+        val textDescription = view!!.findViewById<TextView>(R.id.text_description)
         val level = getItem(position)
         if (level != null) {
             textContent.text = level.title
+
+            val desc = "Number of value " + level.numberOfObject
+            textDescription.text = desc
         } else {
             textContent.text = ""
+            textDescription.text = ""
         }
         return view
     }

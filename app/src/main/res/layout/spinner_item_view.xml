@@ -8,4 +8,4 @@
     android:paddingVertical="6dp"
     android:paddingHorizontal="8dp"
     android:textColor="@color/primary_text"
-    android:textSize="16sp" />
+    android:textSize="18sp" />

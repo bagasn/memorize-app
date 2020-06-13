@@ -4,4 +4,7 @@
     <string name="title_main_menu">Main Menu</string>
     <string name="title_chunking_menu">Chunking Menu</string>
     <string name="title_chunking_practice">Chunking Practice</string>
+    <string name="initiating_3dot">Initiating....</string>
+    <string name="apps_icon">Apps icon</string>
+    <string name="next">Next</string>
 </resources>

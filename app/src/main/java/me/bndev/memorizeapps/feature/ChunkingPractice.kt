@@ -1,7 +1,7 @@
 package me.bndev.memorizeapps.feature
 
 import android.os.Bundle
-import android.util.Log
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_chunking_practice.*
 import me.bndev.memorizeapps.R
 import me.bndev.memorizeapps.adapter.SpinnerChunkingLevelAdapter
@@ -24,18 +24,27 @@ class ChunkingPractice : IActivity() {
         spinner_level.adapter = SpinnerChunkingLevelAdapter(this, levelList)
 
         button_start.setOnClickListener {
+            spinner_level.isEnabled = false
+            button_start.isEnabled = false
+
             actionStartButton()
         }
     }
 
     fun actionStartButton() {
         val chunkinType = intent.getSerializableExtra("chunking-id") as? ChunkingEnum
-        Log.i("C", chunkinType.toString())
-        if (chunkinType == ChunkingEnum.NUMBER) {
-            val level = spinner_level.selectedItem as? LevelMod
+        val level = spinner_level.selectedItem as? LevelMod
 
-            val tr = supportFragmentManager.beginTransaction()
-            tr.add(R.id.frame_content, ChunkingRandomNumber(level!!))
+        val tr = supportFragmentManager.beginTransaction()
+        var fragment: Fragment? = null
+
+        when (chunkinType) {
+            ChunkingEnum.NUMBER -> fragment = ChunkingRandomNumber(level!!)
+        }
+
+        if (fragment != null) {
+            tr.add(R.id.frame_content, fragment)
+            tr.disallowAddToBackStack()
             tr.commit()
         }
     }
@@ -45,7 +54,14 @@ class ChunkingPractice : IActivity() {
             val level = LevelMod()
             level.level = i
             level.title = "Level $i"
-            level.numberOfObject = 5 + (i * 5)
+
+            var n = 12
+
+            for (j in 1..i) {
+                n += n
+            }
+
+            level.numberOfObject = n / 2
 
             levelList.add(level)
         }
