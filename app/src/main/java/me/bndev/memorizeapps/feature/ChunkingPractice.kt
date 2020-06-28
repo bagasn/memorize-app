@@ -1,5 +1,6 @@
 package me.bndev.memorizeapps.feature
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_chunking_practice.*
@@ -20,7 +21,7 @@ class ChunkingPractice : IActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        setLevelUntil(15)
+        setLevelUntil(4)
         spinner_level.adapter = SpinnerChunkingLevelAdapter(this, levelList)
 
         button_start.setOnClickListener {
@@ -55,7 +56,7 @@ class ChunkingPractice : IActivity() {
             level.level = i
             level.title = "Level $i"
 
-            var n = 12
+            var n = 20
 
             for (j in 1..i) {
                 n += n
@@ -64,6 +65,13 @@ class ChunkingPractice : IActivity() {
             level.numberOfObject = n / 2
 
             levelList.add(level)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1) {
+            finish()
         }
     }
 

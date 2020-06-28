@@ -1,16 +1,19 @@
 package me.bndev.memorizeapps.fragment
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_chunking_child.*
 import me.bndev.memorizeapps.R
 import me.bndev.memorizeapps.adapter.RecyclerChunkingNumberAdapter
 import me.bndev.memorizeapps.app.database.table.ChunkingTable
+import me.bndev.memorizeapps.feature.ChunkingInputObject
 import me.bndev.memorizeapps.model.LevelMod
 import me.bndev.memorizeapps.utils.DatabaseManager
 import java.util.*
@@ -54,6 +57,13 @@ class ChunkingRandomNumber(private val level: LevelMod) : Fragment() {
         mTimeStarting = System.currentTimeMillis()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1) {
+            activity!!.finish()
+        }
+    }
+
     private fun insertToTableChunking(timeRemember: String) {
         val contentValues = ContentValues()
 
@@ -68,8 +78,14 @@ class ChunkingRandomNumber(private val level: LevelMod) : Fragment() {
         val insertId = DatabaseManager.init(context)
             .insert(ChunkingTable.tableName, contentValues)
 
-        if (insertId.equals(-1)) {
+        if (insertId != -1L) {
+            val intent = Intent(context, ChunkingInputObject::class.java)
+            intent.putExtra("id", insertId)
+            intent.putExtra("chunking-type", "number")
+            startActivity(intent)
 
+            Toast.makeText(context, "Saved", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
