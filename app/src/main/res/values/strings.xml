@@ -7,4 +7,11 @@
     <string name="initiating_3dot">Initiating....</string>
     <string name="apps_icon">Apps icon</string>
     <string name="next">Next</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="apps_logo">Apps Logo</string>
+    <string name="logout">Logout</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="practice">Practice</string>
 </resources>

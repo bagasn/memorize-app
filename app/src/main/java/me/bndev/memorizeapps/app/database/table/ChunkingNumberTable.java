@@ -5,29 +5,33 @@ import android.util.Log;
 
 import me.bndev.memorizeapps.app.config.Tags;
 
-public class ChunkingTable {
+public class ChunkingNumberTable {
     private static final String TAG = "ChunkingTable";
 
-    public static final String tableName = "tbl_chunking";
+    public static final String tableName = "t_chunking_number";
 
     public static final String colID                    = "_id";
     public static final String colGenerateObject        = "generate_object";
     public static final String colInputObject           = "input_object";
-    public static final String colChunkingType          = "chunking_type";
     public static final String colPercentageOfCorrect   = "percentage_of_correct";
     public static final String colTimeToRemember        = "time_to_remember";
     public static final String colLevel                 = "level";
     public static final String colNumberOfObject        = "number_of_object";
+    public static final String colNumberOfChunk         = "number_of_chunk";
+    public static final String colInputBy               = "input_by";
+    public static final String colStatus                = "status";
 
     public static final String[] fields = new String[]{
             colID,
             colGenerateObject,
             colInputObject,
-            colChunkingType,
             colPercentageOfCorrect,
             colTimeToRemember,
             colLevel,
-            colNumberOfObject
+            colNumberOfObject,
+            colNumberOfChunk,
+            colInputBy,
+            colStatus
     };
 
     public static void createTable(SQLiteDatabase db) {
@@ -35,11 +39,13 @@ public class ChunkingTable {
                 colID + " INT PRIMARY KEY AUTOINCREMENT," +
                 colGenerateObject + " TEXT, " +
                 colInputObject + " TEXT, " +
-                colChunkingType + " TEXT, " +
                 colPercentageOfCorrect + " TEXT, " +
                 colTimeToRemember + " TEXT, " + // HH:mm:ss
                 colLevel + " TEXT, " +
-                colNumberOfObject + " TEXT" + // depending level
+                colNumberOfObject + " TEXT, " + // depending level
+                colNumberOfChunk + " TEXT, " + // depending level
+                colInputBy + " TEXT, " + // depending level
+                colStatus + " TEXT" + // depending level
                 ")");
 
         Log.i(Tags.LOG, "Table chunking has created");

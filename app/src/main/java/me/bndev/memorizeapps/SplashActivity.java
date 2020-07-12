@@ -21,21 +21,19 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 DatabaseManager.init(getApplicationContext());
 
-                SessionManager session = SessionManager.init(getApplicationContext());
-                session.putString(SessionManager.keyUserId, "1")
-                        .putString(SessionManager.keyUserName, "bagasn")
-                        .putString(SessionManager.keyFullName, "Bagas Nasution")
-                        .apply();
-
-                session.printSession();
-
                 try {
                     Thread.sleep(2500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
+                } finally {
+                    String userId = SessionManager.init(getApplicationContext())
+                            .getString(SessionManager.keyUserId);
 
-                toHome();
+                    if (userId.isEmpty())
+                        moveTo(LoginActivity.class);
+                    else
+                        moveTo(HomeActivity.class);
+                }
             }
         }).start();
     }
@@ -45,8 +43,8 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    private void toHome() {
-        Intent intent = new Intent(this, MainActivity.class);
+    private void moveTo(Class<?> clazz) {
+        Intent intent = new Intent(this, clazz);
         startActivity(intent);
         finish();
     }

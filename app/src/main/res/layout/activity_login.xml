@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_launcher_foreground"
+        android:tint="#4CAF50"
+        android:contentDescription="@string/apps_logo"
+        app:layout_constraintBottom_toTopOf="@+id/inputLayoutUsername"
+        app:layout_constraintEnd_toEndOf="@+id/inputLayoutUsername"
+        app:layout_constraintStart_toStartOf="@+id/inputLayoutUsername"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayoutUsername"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayoutPassword"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/inputLayoutUsername"
+        app:layout_constraintStart_toStartOf="@+id/inputLayoutUsername"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutUsername">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/login"
+        app:layout_constraintEnd_toEndOf="@+id/inputLayoutPassword"
+        app:layout_constraintStart_toStartOf="@+id/inputLayoutPassword"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutPassword" />
+
+    <ProgressBar
+        android:id="@+id/progressCircular"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/inputLayoutPassword"
+        app:layout_constraintStart_toStartOf="@+id/inputLayoutPassword"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutPassword"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

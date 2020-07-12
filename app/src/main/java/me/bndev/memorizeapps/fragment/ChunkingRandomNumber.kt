@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_chunking_child.*
 import me.bndev.memorizeapps.R
 import me.bndev.memorizeapps.adapter.RecyclerChunkingNumberAdapter
-import me.bndev.memorizeapps.app.database.table.ChunkingTable
+import me.bndev.memorizeapps.app.database.table.ChunkingNumberTable
 import me.bndev.memorizeapps.feature.ChunkingInputObject
 import me.bndev.memorizeapps.model.LevelMod
 import me.bndev.memorizeapps.utils.DatabaseManager
@@ -67,16 +67,15 @@ class ChunkingRandomNumber(private val level: LevelMod) : Fragment() {
     private fun insertToTableChunking(timeRemember: String) {
         val contentValues = ContentValues()
 
-        contentValues.put(ChunkingTable.colGenerateObject, convertToString(numberList!!))
+        contentValues.put(ChunkingNumberTable.colGenerateObject, convertToString(numberList!!))
 //        contentValues.put(ChunkingTable.colInputObject, "")
-        contentValues.put(ChunkingTable.colChunkingType, "number")
 //        contentValues.put(ChunkingTable.colPercentageOfCorrect, "")
-        contentValues.put(ChunkingTable.colTimeToRemember, timeRemember)
-        contentValues.put(ChunkingTable.colLevel, level.level.toString())
-        contentValues.put(ChunkingTable.colNumberOfObject, level.numberOfObject.toString())
+        contentValues.put(ChunkingNumberTable.colTimeToRemember, timeRemember)
+        contentValues.put(ChunkingNumberTable.colLevel, level.level.toString())
+        contentValues.put(ChunkingNumberTable.colNumberOfObject, level.numberOfObject.toString())
 
         val insertId = DatabaseManager.init(context)
-            .insert(ChunkingTable.tableName, contentValues)
+            .insert(ChunkingNumberTable.tableName, contentValues)
 
         if (insertId != -1L) {
             val intent = Intent(context, ChunkingInputObject::class.java)

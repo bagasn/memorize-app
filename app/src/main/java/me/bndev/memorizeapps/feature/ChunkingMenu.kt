@@ -3,7 +3,6 @@ package me.bndev.memorizeapps.feature
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_chunking_menu.*
 import me.bndev.memorizeapps.R
 import me.bndev.memorizeapps.adapter.IRecycler

@@ -36,6 +36,12 @@ public class SessionManager {
         return mSharedPreferences.getString(key, defValue);
     }
 
+    public void setValue(String key, String value) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(key, value);
+        editor.apply();
+    }
+
     public SharedPreferences.Editor putString(String key, String value) {
         @SuppressLint("CommitPrefEdits")
         SharedPreferences.Editor editor = mSharedPreferences.edit();
@@ -48,7 +54,7 @@ public class SessionManager {
     }
 
     public void printSession() {
-        Log.i(TAG, "printSession: \n" +
+        Log.i(TAG, "User has logged: \n" +
                 "user-id: " + getString(keyUserId) + ", \n" +
                 "user-name: " + getString(keyUserName) + ", \n" +
                 "full-name: " + getString(keyFullName)
