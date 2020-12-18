@@ -2,7 +2,6 @@
 <resources>
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#455A64</color>
-    <color name="colorPrimaryLight">#455A64</color>
     <color name="colorAccent">#009688</color>
 
     <color name="primary_text">#212121</color>
@@ -18,6 +17,6 @@
     <color name="card_blue_background">#03a9f4</color>
     <color name="card_green_background">#4caf50</color>
 
-
     <color name="transparent">#00ffffff</color>
+
 </resources>

@@ -14,7 +14,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
 
-import me.bndev.memorizeapps.utils.SessionManager;
+import me.bndev.memorizeapps.app.utils.SessionManager;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -61,13 +61,13 @@ public class LoginActivity extends AppCompatActivity {
         setLoadingState(true);
 
         if (username.equals("bagasn") && password.equals("123")) {
-            SessionManager session = SessionManager.init(getApplicationContext());
-            session.putString(SessionManager.keyUserId, "1")
-                    .putString(SessionManager.keyUserName, "bagasn")
-                    .putString(SessionManager.keyFullName, "Bagas Nasution")
-                    .apply();
-
-            session.printSession();
+//            SessionManager session = SessionManager.init(getApplicationContext());
+//            session.putString(SessionManager.keyUserId, "1")
+//                    .putString(SessionManager.keyUserName, "bagasn")
+//                    .putString(SessionManager.keyFullName, "Bagas Nasution")
+//                    .apply();
+//
+//            session.printSession();
 
             startActivity(new Intent(this, HomeActivity.class));
             finish();

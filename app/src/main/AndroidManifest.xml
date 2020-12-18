@@ -13,12 +13,6 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -27,15 +21,7 @@
 
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_main_menu"/>
-
-        <activity
-            android:name=".feature.ChunkingMenu"
-            android:label="@string/title_chunking_menu" />
-
-        <activity
-            android:name=".feature.ChunkingPractice"
-            android:label="@string/title_chunking_practice" />
+            android:label="@string/title_main_menu" />
 
     </application>
 

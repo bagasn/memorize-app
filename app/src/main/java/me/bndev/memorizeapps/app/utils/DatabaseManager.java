@@ -1,4 +1,4 @@
-package me.bndev.memorizeapps.utils;
+package me.bndev.memorizeapps.app.utils;
 
 import android.content.ContentValues;
 import android.content.Context;

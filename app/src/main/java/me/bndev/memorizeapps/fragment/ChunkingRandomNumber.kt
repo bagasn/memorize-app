@@ -15,7 +15,7 @@ import me.bndev.memorizeapps.adapter.RecyclerChunkingNumberAdapter
 import me.bndev.memorizeapps.app.database.table.ChunkingNumberTable
 import me.bndev.memorizeapps.feature.ChunkingInputObject
 import me.bndev.memorizeapps.model.LevelMod
-import me.bndev.memorizeapps.utils.DatabaseManager
+import me.bndev.memorizeapps.app.utils.DatabaseManager
 import java.util.*
 
 class ChunkingRandomNumber(private val level: LevelMod) : Fragment() {
